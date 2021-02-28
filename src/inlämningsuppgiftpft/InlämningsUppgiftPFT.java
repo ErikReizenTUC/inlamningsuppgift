@@ -5,6 +5,8 @@
  */
 package inlämningsuppgiftpft;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Erik
@@ -15,7 +17,18 @@ public class InlämningsUppgiftPFT {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Scanner
+        Scanner scan = new Scanner(System.in);
+        //variable to control do-while loop
+        int intRun = 1;
+        int intUserInput;
+        
+        /*
+        do {
+            
+        }
+        while (intRun == 1);
+        */
     }
     
 }
