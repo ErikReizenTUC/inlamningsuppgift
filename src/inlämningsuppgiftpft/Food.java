@@ -24,18 +24,21 @@ public class Food extends Product implements ProductActions {
     
     //methods from interface ProductActions
     @Override
-    public void Description() {
-        System.out.println(this.description);
+    public String Description() {
+        return this.description;
     }
 
     @Override
-    public void Buy() {
+    public void Buy(Wallet userWallet) {
         System.out.println("You have purchased " + this.productName + " for " + this.price + " kr.");
+        //calculates the remaining currency
+        userWallet.currencyEntered -= this.price;
+        System.out.println("You have: " + userWallet.currencyEntered + " kr remaining");
     }
 
     @Override
     public void Use() {
-        System.out.println(this.productName + " is delicious and filling!");
+        System.out.println("It's delicious and filling!");
     }
     
 }

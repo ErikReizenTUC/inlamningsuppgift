@@ -15,7 +15,12 @@ public class InlämningsUppgiftPFT {
     //Scanner object for user input
     static Scanner scan = new Scanner(System.in);
 
+    //creating user wallet globally as it is used in multiple methods
+    static Wallet userWallet = new Wallet();
+    
     public static void main(String[] args) {
+        
+        
         
         //creating instances of Food objects
         Food.foodList.add(new Food("Pan pizza", 19, "Frozen pan pizza, perfect for the microwave!"));
@@ -45,18 +50,20 @@ public class InlämningsUppgiftPFT {
     //lists the main menu options
     public static void MainMenuList() {
         //variable for controlling the while loop that runs the program
-        int runMenu = 1;
+        int runMainMenu = 1;
         
         //loop that contains most of the program
-        while (runMenu == 1) {
+        while (runMainMenu == 1) {
             //list of menu options
             System.out.println("Hello and welcome!");
+            System.out.println("Total currency entered: " + userWallet.currencyEntered + " kr.");
             System.out.println("--------------------");
-            System.out.println("1: to browse our selection of food.");
-            System.out.println("2: to browse our selection of drinks.");
-            System.out.println("3: to browse our selection of candy.");
-            System.out.println("4: to browse our selection of snacks.");
-            System.out.println("5: to exit.");
+            System.out.println("1: to enter currency.");
+            System.out.println("2: to browse our selection of food.");
+            System.out.println("3: to browse our selection of drinks.");
+            System.out.println("4: to browse our selection of candy.");
+            System.out.println("5: to browse our selection of snacks.");
+            System.out.println("6: to exit.");
             System.out.println("====================");
             System.out.print("Make your selection: ");
             
@@ -76,23 +83,27 @@ public class InlämningsUppgiftPFT {
             //switch case to handle user selection in main menu
             switch (mainMenuInput) {
                 case 1:
+                    CurrencyMenuList();
+                    break;
+                case 2:
                     //sends user to Food category
                     FoodMenuList();
                     break;
-                case 2:
+                case 3:
                     //sends user to Drinks category
                     DrinkMenuList();
                     break;
-                case 3:
+                case 4:
                     //sends user to Candy category
                     CandyMenuList();
                     break;
-                case 4:
+                case 5:
                     //sends user to Snacks category
                     SnacksMenuList();
                     break;
-                case 5:
+                case 6:
                     //exits program
+                    userWallet.CalculateChange();
                     System.out.println("See you next time!");
                     System.exit(0);
                     break;
@@ -117,9 +128,111 @@ public class InlämningsUppgiftPFT {
         }
     }
     
+    //lists the currency input menu options
+    public static void CurrencyMenuList() {
+
+        System.out.println("Input currency to purchase products: ");
+        System.out.println("--------------------");
+        System.out.println("1: Insert 1 kr coin.");
+        System.out.println("2: Insert 5 kr coin.");
+        System.out.println("3: Insert 10 kr coin.");
+        System.out.println("4: Return to Main Menu");
+        System.out.println("5: Exit.");
+            
+        CurrencyMenuInput();       
+    }
+    
+    //handles user currency input
+    public static void CurrencyMenuInput() {
+        //variable to control the while loop
+        int runCurrencyMenu = 1;
+        
+        //while loop to make sure user can enter currency repeatedly
+        while (runCurrencyMenu == 1) {
+            System.out.print("Make selection: ");
+            //variable to receive user input
+            //catching if the user enters something other than an integer (InputMismatchException)
+            try {
+                int CurrencyInput = scan.nextInt();
+            
+                //switch case to handle user input
+                switch (CurrencyInput) {
+                    case 1:
+                        //checks whether user tries to input currency they do not have
+                        if (userWallet.numberOf1kr == 0) {
+                            System.out.println("You are out of 1 kr coins, try another denomination.");
+                            break;
+                        }
+                        else {
+                            userWallet.currencyEntered += 1;
+                            userWallet.numberOf1kr--;
+                            System.out.println("1 kr inserted. You have " + userWallet.numberOf1kr + ": 1 kr coins remaining.");
+                            System.out.println("Sum currency entered: " + userWallet.currencyEntered + " kr.");
+                            break;
+                        }
+                    case 2:
+                        if (userWallet.numberOf5kr == 0) {
+                            System.out.println("You are out of 5 kr coins, try another denomination.");
+                            break;
+                        }
+                        else {
+                            userWallet.currencyEntered += 5;
+                            userWallet.numberOf5kr--;
+                            System.out.println("5 kr inserted. You have " + userWallet.numberOf5kr + ": 5 kr coins remaining.");
+                            System.out.println("Sum currency entered: " + userWallet.currencyEntered + " kr.");
+                            break;
+                        }
+                    case 3:
+                        if (userWallet.numberOf10kr == 0) {
+                            System.out.println("You are out of 10 kr coins, try another denomination.");
+                            break;
+                        }
+                        else {
+                            userWallet.currencyEntered += 10;
+                            userWallet.numberOf10kr--;
+                            System.out.println("10 kr inserted. You have " + userWallet.numberOf10kr + ": 10 kr coins remaining.");
+                            System.out.println("Sum currency entered: " + userWallet.currencyEntered + " kr.");
+                            break;
+                        }
+                    case 4:
+                        //breaks while loop and returns to main menu once user is finished
+                        System.out.println("Returning to main menu...");
+                        System.out.println("");
+                        System.out.println("====================");
+                        System.out.println("");
+                        runCurrencyMenu = 0;
+                        break;
+                    case 5:
+                        userWallet.CalculateChange();
+                        System.out.println("See you next time!");
+                        System.exit(0);
+                        break;
+                    default:
+                        //handles if user input does not match menu options
+                        System.out.println("Input not recognized. Make sure your selection matches menu options.");
+                        System.out.println("");
+                        System.out.println("====================");
+                        System.out.println("");
+                        break;
+                }       
+            }
+            catch (Exception InputMismatchException) {
+                //error message
+                System.out.println("Input not recognized. Please enter an integer.");
+                System.out.println("");
+                System.out.println("====================");
+                System.out.println("");
+            
+                //clears scanner input to avoid infinite loop
+                scan.next();  
+            }
+        }
+    }
+    
     //lists the options for the Food category
     public static void FoodMenuList() {
         System.out.println("Food: ");
+        System.out.println("Total currency entered: " + userWallet.currencyEntered + " kr.");
         System.out.println("--------------------");
         
         //for-loop to print user options dynamically
@@ -156,14 +269,19 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (foodInput == Food.foodList.size() + 2) {
+                userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            else {
-                Food.foodList.get(foodInput - 1).Buy();
-                Food.foodList.get(foodInput - 1).Use();
+            //checks whether the user has enough money to pay for the product, and returns to main menu if not
+            else if (userWallet.currencyEntered >= Food.foodList.get(foodInput - 1).price) {
+                    Food.foodList.get(foodInput - 1).Buy(userWallet);
+                    Food.foodList.get(foodInput - 1).Use();
             }
-        
+            else {
+                    System.out.println("Insufficient funds. Please add more currency.");
+            }
+                        
             //separator to make console easier to navigate
             System.out.println("");
             System.out.println("====================");
@@ -184,6 +302,7 @@ public class InlämningsUppgiftPFT {
     //lists the options for the Drinks category
     public static void DrinkMenuList() {
         System.out.println("Drinks: ");
+        System.out.println("Total currency entered: " + userWallet.currencyEntered + " kr.");
         System.out.println("--------------------");
         
         //for-loop to print user options dynamically
@@ -219,14 +338,19 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (drinkInput == Drink.drinksList.size() + 2) {
+                userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            else {
-                Drink.drinksList.get(drinkInput - 1).Buy();
+            //checks whether the user has enough money to pay for the product, and returns to main menu if not
+            else if (userWallet.currencyEntered >= Drink.drinksList.get(drinkInput - 1).price) {
+                Drink.drinksList.get(drinkInput - 1).Buy(userWallet);
                 Drink.drinksList.get(drinkInput - 1).Use();
             }
-        
+            else {
+                System.out.println("Insufficient funds. Please add more currency.");
+            }                
+            
             //separator to make console easier to navigate
             System.out.println("");
             System.out.println("====================");
@@ -247,6 +371,7 @@ public class InlämningsUppgiftPFT {
     //lists the options for the Candy category
     public static void CandyMenuList() {
         System.out.println("Candy: ");
+        System.out.println("Total currency entered: " + userWallet.currencyEntered + " kr.");
         System.out.println("--------------------");
         
         //for-loop to print user options dynamically
@@ -283,13 +408,20 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (candyInput == Candy.candyList.size() + 2) {
+                userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            else {
-                Candy.candyList.get(candyInput - 1).Buy();
+            //checks whether the user has enough money to pay for the product, and returns to main menu if not
+            else if (userWallet.currencyEntered >= Candy.candyList.get(candyInput - 1).price) {
+                Candy.candyList.get(candyInput - 1).Buy(userWallet);
                 Candy.candyList.get(candyInput - 1).Use();
             }
+            else {
+                System.out.println("Insufficient funds. Please add more currency.");
+            }
+                
+            
         
             //separator to make console easier to navigate
             System.out.println("");
@@ -312,6 +444,7 @@ public class InlämningsUppgiftPFT {
     //lists the options for the Snacks category
     public static void SnacksMenuList() {
         System.out.println("Snacks: ");
+        System.out.println("Total currency entered: " + userWallet.currencyEntered + " kr.");
         System.out.println("--------------------");
         
         //for-loop to print user options dynamically
@@ -348,13 +481,21 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (snacksInput == Snacks.snacksList.size() + 2) {
+                userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            else {
-                Snacks.snacksList.get(snacksInput - 1).Buy();
+            //checks whether the user has enough money to pay for the product, and returns to main menu if not
+            else if (userWallet.currencyEntered >= Snacks.snacksList.get(snacksInput - 1).price) {
+                Snacks.snacksList.get(snacksInput - 1).Buy(userWallet);
                 Snacks.snacksList.get(snacksInput - 1).Use();
             }
+            else {
+                System.out.println("Insufficient funds. Please add more currency.");
+            }
+                
+                
+            
         
             //separator to make console easier to navigate
             System.out.println("");

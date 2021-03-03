@@ -11,8 +11,8 @@ package inlämningsuppgiftpft;
  */
 public interface ProductActions {
     //interface where mandatory actions for products will be contained
-    void Description(); //might need to return string rather than void?
-    void Buy();
+    String Description();
+    void Buy(Wallet userWallet);
     void Use();
     
 }
