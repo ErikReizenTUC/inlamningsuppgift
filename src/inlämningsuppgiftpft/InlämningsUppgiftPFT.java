@@ -12,13 +12,11 @@ import java.util.Scanner;
  * @author Erik
  */
 public class InlämningsUppgiftPFT {
+    //Scanner object for user input
+    Scanner scan = new Scanner(System.in);
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         //Scanner
-        Scanner scan = new Scanner(System.in);
         //variable to control do-while loop
         int intRun = 1;
         int intUserInput;
@@ -29,6 +27,26 @@ public class InlämningsUppgiftPFT {
         }
         while (intRun == 1);
         */
+    }
+    
+    public static void MainMenu() {
+        
+    }
+    
+    public static void FoodMenu() {
+        
+    }
+    
+    public static void DrinkMenu() {
+        
+    }
+    
+    public static void CandyMenu() {
+        
+    }
+    
+    public static void SnacksMenu() {
+        
     }
     
 }
