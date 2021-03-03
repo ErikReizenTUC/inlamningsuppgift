@@ -47,7 +47,7 @@ public class InlämningsUppgiftPFT {
     }
     
     public static void FoodMenu() {
-        int Foodinput;
+        
     }
     
     public static void DrinkMenu() {

@@ -14,28 +14,28 @@ import java.util.ArrayList;
 public class Candy extends Product implements ProductActions {
     
     //constructor
-    public Candy(String strProductName, int intPrice, String strDescription)
+    public Candy(String productName, int price, String description)
     {
-        super(strProductName, intPrice, strDescription);
+        super(productName, price, description);
     }
     
     //ArrayList
-    ArrayList<Candy> candyList = new ArrayList<>();
+    static ArrayList<Candy> candyList = new ArrayList<>();
         
     //methods from interface ProductActions
     @Override
     public void Description() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(this.description);
     }
 
     @Override
     public void Buy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("You have purchased " + this.productName + " for " + this.price + " kr.");
     }
 
     @Override
     public void Use() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(this.productName + " is sweet and tasty!");
     }
     
 }

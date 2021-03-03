@@ -14,15 +14,15 @@ abstract public class Product {
     //abstract class that all products will inherit from
     
     //attributes
-    public String strProductName;
-    public int intPrice;
-    public String strDescription;
+    public String productName;
+    public int price;
+    public String description;
     
     //constructor
-    public Product(String strProductName, int intPrice, String strDescription)
+    public Product(String productName, int price, String description)
     {
-        this.strProductName = strProductName;
-        this.intPrice = intPrice;
-        this.strDescription = strDescription;
+        this.productName = productName;
+        this.price = price;
+        this.description = description;
     }
 }
