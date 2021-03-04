@@ -269,15 +269,11 @@ public class InlämningsUppgiftPFT {
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            //checks whether the user has enough money to pay for the product, and returns to main menu if not
-            else if (userWallet.currencyEntered >= Food.foodList.get(foodInput - 1).price) {
-                    Food.foodList.get(foodInput - 1).Buy(userWallet);
-                    Food.foodList.get(foodInput - 1).Use();
-            }
             else {
-                    System.out.println("Insufficient funds. Please add more currency.");
-            }
-                        
+                //checks whether the user has enough money to pay for the product, and returns to main menu if not
+                Food.foodList.get(foodInput - 1).Buy(userWallet);
+            }   
+            
             //separator to make console easier to navigate
             System.out.println("");
             System.out.println("====================");
@@ -339,14 +335,10 @@ public class InlämningsUppgiftPFT {
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            //checks whether the user has enough money to pay for the product, and returns to main menu if not
-            else if (userWallet.currencyEntered >= Drink.drinksList.get(drinkInput - 1).price) {
-                Drink.drinksList.get(drinkInput - 1).Buy(userWallet);
-                Drink.drinksList.get(drinkInput - 1).Use();
-            }
             else {
-                System.out.println("Insufficient funds. Please add more currency.");
-            }                
+                //checks whether the user has enough money to pay for the product, and returns to main menu if not
+                Drink.drinksList.get(drinkInput - 1).Buy(userWallet);
+            }             
             
             //separator to make console easier to navigate
             System.out.println("");
@@ -410,13 +402,10 @@ public class InlämningsUppgiftPFT {
                 System.out.println("See you next time!");
                 System.exit(0);
             }
-            //checks whether the user has enough money to pay for the product, and returns to main menu if not
-            else if (userWallet.currencyEntered >= Candy.candyList.get(candyInput - 1).price) {
-                Candy.candyList.get(candyInput - 1).Buy(userWallet);
-                Candy.candyList.get(candyInput - 1).Use();
-            }
+            
             else {
-                System.out.println("Insufficient funds. Please add more currency.");
+                //checks whether the user has enough money to pay for the product, and returns to main menu if not
+                Candy.candyList.get(candyInput - 1).Buy(userWallet);
             }
         
             //separator to make console easier to navigate
@@ -483,12 +472,8 @@ public class InlämningsUppgiftPFT {
                 System.exit(0);
             }
             //checks whether the user has enough money to pay for the product, and returns to main menu if not
-            else if (userWallet.currencyEntered >= Snacks.snacksList.get(snacksInput - 1).price) {
-                Snacks.snacksList.get(snacksInput - 1).Buy(userWallet);
-                Snacks.snacksList.get(snacksInput - 1).Use();
-            }
             else {
-                System.out.println("Insufficient funds. Please add more currency.");
+                Snacks.snacksList.get(snacksInput - 1).Buy(userWallet);
             }
                 
             //separator to make console easier to navigate

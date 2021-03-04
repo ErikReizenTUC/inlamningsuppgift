@@ -30,10 +30,17 @@ public class Drink extends Product implements ProductActions{
 
     @Override
     public void Buy(Wallet userWallet) {
-        System.out.println("You have purchased " + this.productName + " for " + this.price + " kr.");
-        //calculates the remaining currency
-        userWallet.currencyEntered -= this.price;
-        System.out.println("You have: " + userWallet.currencyEntered + " kr remaining");
+        //checks whether the user has sufficient funds
+        if (userWallet.currencyEntered > this.price) {
+            System.out.println("You have purchased " + this.productName + " for " + this.price + " kr.");
+            //calculates the remaining currency
+            userWallet.currencyEntered -= this.price;
+            System.out.println("You have: " + userWallet.currencyEntered + " kr remaining");
+            this.Use();
+        }
+        else {
+            System.out.println("Insufficient funds. Please add more currency.");
+        }
     }
 
     @Override
