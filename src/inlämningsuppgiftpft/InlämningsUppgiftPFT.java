@@ -19,9 +19,7 @@ public class InlämningsUppgiftPFT {
     static Wallet userWallet = new Wallet();
     
     public static void main(String[] args) {
-        
-        
-        
+
         //creating instances of Food objects
         Food.foodList.add(new Food("Pan pizza", 19, "Frozen pan pizza, perfect for the microwave!"));
         Food.foodList.add(new Food("Ham and cheese sandwich", 15, "Ham and cheese sandwich with sliced peppers, on rye bread."));
@@ -86,23 +84,19 @@ public class InlämningsUppgiftPFT {
                     CurrencyMenuList();
                     break;
                 case 2:
-                    //sends user to Food category
                     FoodMenuList();
                     break;
                 case 3:
-                    //sends user to Drinks category
                     DrinkMenuList();
                     break;
                 case 4:
-                    //sends user to Candy category
                     CandyMenuList();
                     break;
                 case 5:
-                    //sends user to Snacks category
                     SnacksMenuList();
                     break;
                 case 6:
-                    //exits program
+                    //exits program after calculating change
                     userWallet.CalculateChange();
                     System.out.println("See you next time!");
                     System.exit(0);
@@ -203,6 +197,7 @@ public class InlämningsUppgiftPFT {
                         runCurrencyMenu = 0;
                         break;
                     case 5:
+                        //exits program after calculating change
                         userWallet.CalculateChange();
                         System.out.println("See you next time!");
                         System.exit(0);
@@ -269,6 +264,7 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (foodInput == Food.foodList.size() + 2) {
+                //exits program after calculating change
                 userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
@@ -338,6 +334,7 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (drinkInput == Drink.drinksList.size() + 2) {
+                //exits program after calculating change
                 userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
@@ -408,6 +405,7 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (candyInput == Candy.candyList.size() + 2) {
+                //exits program after calculating change
                 userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
@@ -420,8 +418,6 @@ public class InlämningsUppgiftPFT {
             else {
                 System.out.println("Insufficient funds. Please add more currency.");
             }
-                
-            
         
             //separator to make console easier to navigate
             System.out.println("");
@@ -481,6 +477,7 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Returning to main menu...");
             }
             else if (snacksInput == Snacks.snacksList.size() + 2) {
+                //exits program after calculating change
                 userWallet.CalculateChange();
                 System.out.println("See you next time!");
                 System.exit(0);
@@ -494,9 +491,6 @@ public class InlämningsUppgiftPFT {
                 System.out.println("Insufficient funds. Please add more currency.");
             }
                 
-                
-            
-        
             //separator to make console easier to navigate
             System.out.println("");
             System.out.println("====================");

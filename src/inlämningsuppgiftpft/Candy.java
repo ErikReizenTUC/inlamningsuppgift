@@ -19,7 +19,7 @@ public class Candy extends Product implements ProductActions {
         super(productName, price, description);
     }
     
-    //ArrayList
+    //ArrayList, with objects created in the main file
     static ArrayList<Candy> candyList = new ArrayList<>();
         
     //methods from interface ProductActions
